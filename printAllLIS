@@ -1,0 +1,58 @@
+from collections import defaultdict, deque
+
+# tc:o(n^2)+o(no of lis * n)--------
+
+# lst=[10,22,9,33,21,50,41,60,80,3]
+lst=[10,22,42,33,21,50,41,60,80,3]
+
+dp=[1]*len(lst)
+adj=defaultdict(list)
+for cur in range(len(lst)):
+
+    for prev in range(cur):
+
+        if lst[prev]<lst[cur]:
+
+            dp[cur]=max(dp[cur],1+dp[prev])
+    
+    adj[dp[cur]].append(cur)
+
+maxi=max(dp)
+
+
+q=[]
+for idx,ele in enumerate(dp):
+    if ele==maxi:
+        q.append([idx,ele])
+
+
+
+res=[]
+def dfs(idx,lis,inlst):
+
+    if lis==1:
+        res.append(inlst[:])
+        return 
+
+    for j in adj[lis-1]:
+
+        if j not in vis and idx>j and lst[idx]>lst[j]:
+            vis.add(j)
+            inlst.append(lst[j])
+            dfs(j,lis-1,inlst)
+            inlst.pop()
+            vis.remove(j)
+            
+    
+
+vis=set()
+while q:
+
+
+    idx,lis=q.popleft()
+
+    dfs(idx,lis,[lst[idx]])
+
+print(res) 
+
+

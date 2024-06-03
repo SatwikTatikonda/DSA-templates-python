@@ -1,0 +1,11 @@
+Minimum Spanning tree is a subset of the edge-weighted undirecred connected graph that contects all the vertices together, without any cycles and with the minimum possible total edge  weight
+
+a graph can be turned into multiple spanning trees but can have only one uniq MST
+
+As it doest have cycle it is called as trees
+
+
+Strongly Connected Component
+
+SCC is a Component in wch we can reach every component from every other vertex in that component 
+
